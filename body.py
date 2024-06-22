@@ -5,7 +5,7 @@ from food import Food
 from scoreboard import ScoreBoard
 
 screen = Screen()
-screen.setup(width=600,height=600)
+screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Feed me unless I will eat you!!!")
 screen.tracer(0)
@@ -30,9 +30,10 @@ while is_game_on:
     count = 0
 
     # detect the colloision with food
-    if snake.head.distance(food) < 15:
+    if snake.head.distance(food)< 15:
         food.refresh()
-        scoreboard.inceaaseScore()
+        snake.extend()
+        scoreboard.increaseScore()
 
     # detect the collision with wall
     if (
@@ -43,4 +44,15 @@ while is_game_on:
     ):
         is_game_on = False
         scoreboard.game_over()
+    #detect collision with the tail
+
+    for segment in snake.segments:
+        if segment==snake.head:
+            pass
+        elif snake.head.distance(segment)<10:
+            is_game_on=False
+            scoreboard.game_over()
+
+            
+
 screen.exitonclick()
