@@ -30,7 +30,7 @@ while is_game_on:
     count = 0
 
     # detect the colloision with food
-    if snake.head.distance(food)< 15:
+    if snake.head.distance(food) < 15:
         food.refresh()
         snake.extend()
         scoreboard.increaseScore()
@@ -44,15 +44,14 @@ while is_game_on:
     ):
         is_game_on = False
         scoreboard.game_over()
-    #detect collision with the tail
+    # detect collision with the tail
 
     for segment in snake.segments:
-        if segment==snake.head:
+        if segment == snake.head:
             pass
-        elif snake.head.distance(segment)<10:
-            is_game_on=False
+        elif snake.head.distance(segment) < 10:
+            is_game_on = False
             scoreboard.game_over()
 
-            
 
 screen.exitonclick()
